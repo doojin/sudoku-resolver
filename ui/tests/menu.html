@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>menu.js</title>
+    <link rel="stylesheet" href="qunit/qunit.css"/>
+</head>
+<body>
+    <div id="qunit"></div>
+    <div id="qunit-fixture">
+        <div class="ui menu">
+            <a class="active item" id="link1"></a>
+            <a class="item" id="link2"></a>
+            <div class="link item" id="link3"></div>
+            <a class="dropdown item" id="link4"></a>
+        </div>
+    </div>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="qunit/qunit.js"></script>
+    <script type="text/javascript" src="qunit/sinon.js"></script>
+    <script type="text/javascript" src="qunit/sinon-qunit.js"></script>
+    <script type="text/javascript" src="../semantic/javascript/semantic.min.js"></script>
+    <script type="text/javascript" src="../assets/javascript/menu.js"></script>
+    <script type="text/javascript">
+        QUnit.test('Clicking on link', function(assert) {
+            assert.equal($('#link1').hasClass('active'), true);
+            assert.equal($('#link2').hasClass('active'), false);
+            assert.equal($('#link3').hasClass('active'), false);
+            assert.equal($('#link4').hasClass('active'), false);
+
+            $('#link2').trigger('click');
+
+            assert.equal($('#link1').hasClass('active'), false);
+            assert.equal($('#link2').hasClass('active'), true);
+            assert.equal($('#link3').hasClass('active'), false);
+            assert.equal($('#link4').hasClass('active'), false);
+
+            $("#link3").trigger('click');
+
+            assert.equal($('#link1').hasClass('active'), false);
+            assert.equal($('#link2').hasClass('active'), false);
+            assert.equal($('#link3').hasClass('active'), true);
+            assert.equal($('#link4').hasClass('active'), false);
+        });
+
+        QUnit.test('Clicking on dropdown item', function(assert) {
+            assert.equal($('#link1').hasClass('active'), true);
+            assert.equal($('#link2').hasClass('active'), false);
+            assert.equal($('#link3').hasClass('active'), false);
+            assert.equal($('#link4').hasClass('active'), false);
+
+            $('#link4').trigger('click');
+
+            assert.equal($('#link1').hasClass('active'), true);
+            assert.equal($('#link2').hasClass('active'), false);
+            assert.equal($('#link3').hasClass('active'), false);
+            assert.equal($('#link4').hasClass('active'), false);
+        });
+    </script>
+</body>
+</html>
