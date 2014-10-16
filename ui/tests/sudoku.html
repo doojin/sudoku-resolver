@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>sudoku.js</title>
+    <link rel="stylesheet" href="qunit/qunit.css"/>
+</head>
+<body>
+    <div id="qunit"></div>
+    <div id="qunit-fixture">
+        <table cellspacing="0" cellpadding="0" id="sudoku">
+            <tr>
+                <td><input type="text" id="input1"></td>
+                <td><input type="text" id="input2"></td>
+                <td><input type="text" id="input3"></td>
+                <td><input type="text" id="input4"></td>
+                <td><input type="text" id="input5"></td>
+                <td><input type="text" id="input6"></td>
+                <td><input type="text" id="input7"></td>
+                <td><input type="text" id="input8"></td>
+                <td><input type="text" id="input9"></td>
+            </tr>
+            <tr>
+                <td><input type="text" id="input10"></td>
+                <td><input type="text" id="input11"></td>
+                <td><input type="text" id="input12"></td>
+                <td><input type="text" id="input13"></td>
+                <td><input type="text" id="input14"></td>
+                <td><input type="text" id="input15"></td>
+                <td><input type="text" id="input16"></td>
+                <td><input type="text" id="input17"></td>
+                <td><input type="text" id="input18"></td>
+            </tr>
+            <tr>
+                <td><input type="text" id="input19"></td>
+                <td><input type="text" id="input20"></td>
+                <td><input type="text" id="input21"></td>
+                <td><input type="text" id="input22"></td>
+                <td><input type="text" id="input23"></td>
+                <td><input type="text" id="input24"></td>
+                <td><input type="text" id="input25"></td>
+                <td><input type="text" id="input26"></td>
+                <td><input type="text" id="input27"></td>
+            </tr>
+            <tr>
+                <td><input type="text" id="input28"></td>
+                <td><input type="text" id="input29"></td>
+                <td><input type="text" id="input30"></td>
+                <td><input type="text" id="input31"></td>
+                <td><input type="text" id="input32"></td>
+                <td><input type="text" id="input33"></td>
+                <td><input type="text" id="input34"></td>
+                <td><input type="text" id="input35"></td>
+                <td><input type="text" id="input36"></td>
+            </tr>
+            <tr>
+                <td><input type="text" id="input37"></td>
+                <td><input type="text" id="input38"></td>
+                <td><input type="text" id="input39"></td>
+                <td><input type="text" id="input40"></td>
+                <td><input type="text" id="input41"></td>
+                <td><input type="text" id="input42"></td>
+                <td><input type="text" id="input43"></td>
+                <td><input type="text" id="input44"></td>
+                <td><input type="text" id="input45"></td>
+            </tr>
+            <tr>
+                <td><input type="text" id="input46"></td>
+                <td><input type="text" id="input47"></td>
+                <td><input type="text" id="input48"></td>
+                <td><input type="text" id="input49"></td>
+                <td><input type="text" id="input50"></td>
+                <td><input type="text" id="input51"></td>
+                <td><input type="text" id="input52"></td>
+                <td><input type="text" id="input53"></td>
+                <td><input type="text" id="input54"></td>
+            </tr>
+            <tr>
+                <td><input type="text" id="input55"></td>
+                <td><input type="text" id="input56"></td>
+                <td><input type="text" id="input57"></td>
+                <td><input type="text" id="input58"></td>
+                <td><input type="text" id="input59"></td>
+                <td><input type="text" id="input60"></td>
+                <td><input type="text" id="input61"></td>
+                <td><input type="text" id="input62"></td>
+                <td><input type="text" id="input63"></td>
+            </tr>
+            <tr>
+                <td><input type="text" id="input64"></td>
+                <td><input type="text" id="input65"></td>
+                <td><input type="text" id="input66"></td>
+                <td><input type="text" id="input67"></td>
+                <td><input type="text" id="input68"></td>
+                <td><input type="text" id="input69"></td>
+                <td><input type="text" id="input70"></td>
+                <td><input type="text" id="input71"></td>
+                <td><input type="text" id="input72"></td>
+            </tr>
+            <tr>
+                <td><input type="text" id="input73"></td>
+                <td><input type="text" id="input74"></td>
+                <td><input type="text" id="input75"></td>
+                <td><input type="text" id="input76"></td>
+                <td><input type="text" id="input77"></td>
+                <td><input type="text" id="input78"></td>
+                <td><input type="text" id="input79"></td>
+                <td><input type="text" id="input80"></td>
+                <td><input type="text" id="input81"></td>
+            </tr>
+        </table>
+    </div>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="qunit/qunit.js"></script>
+    <script type="text/javascript" src="../semantic/javascript/semantic.min.js"></script>
+    <script type="text/javascript" src="../assets/javascript/sudoku.js"></script>
+
+    <script type="text/javascript">
+        QUnit.test('sudokuPresenter.handleNumberChange()', function(assert) {
+            assert.equal($('#input15').css('background-color'), 'rgb(255, 255, 255)');
+
+            $('#input15').val(5);
+            sudokuPresenter.handleNumberChange('#input15');
+
+            assert.equal($('#input15').css('background-color'), 'rgb(238, 238, 238)');
+
+            $('#input15').val('');
+            sudokuPresenter.handleNumberChange('#input15');
+
+            assert.equal($('#input15').css('background-color'), 'rgb(255, 255, 255)');
+        });
+
+        QUnit.test('sudokuPresenter.resize()', function(assert) {
+            var table = document.createElement('table');
+
+            $(table).css('width', '200px');
+
+            assert.equal($(table).height(), 0)
+
+            sudokuPresenter.resize(table);
+
+            assert.equal($(table).height(), 200);
+        });
+    </script>
+
+</body>
+</html>

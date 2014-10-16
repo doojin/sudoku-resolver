@@ -21,6 +21,15 @@ h1, h2, h3 {color: rgba(0, 0, 0, 0.75);}
 
 #sudoku {width: 100%; border-collapse: collapse;}
 #sudoku td {border: solid 1px #CDCDCD; width: 11.111%; height: 11.111%;}
-#sudoku td input {width: 100%; height: 100%; padding: 0; border: none; text-align: center; font: bold 20px "Open Sans"; color: #555555;}
+#sudoku td input {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    border: none;
+    text-align: center;
+    font: bold 20px "Open Sans";
+    color: #555555;
+    background-color: #FFFFFF;
+}
 #sudoku td:nth-child(3), #sudoku td:nth-child(6) {border-right: solid 1px #888888;}
 #sudoku tr:nth-child(3) td, #sudoku tr:nth-child(6) td {border-bottom: solid 1px #888888;}

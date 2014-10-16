@@ -1,16 +1,16 @@
 sudokuPresenter = {
-	handleNumberChange: function(element) {
-		if ($(element).val()) {
-			$(element).css('background-color', '#EEEEEE');
-		} else {
-			$(element).css('background-color', '#FFFFFF');
-		}
-	},
+    handleNumberChange: function(element) {
+        if ($(element).val()) {
+            $(element).css('background-color', '#EEEEEE');
+        } else {
+            $(element).css('background-color', '#FFFFFF');
+        }
+    },
 
-	resize: function(tableId) {
-		var width = $(tableId).width();
-		$(tableId).height(width);
-	}
+    resize: function(tableId) {
+        var width = $(tableId).width();
+        $(tableId).height(width);
+    }
 };
 
 sudoku = {
@@ -24,17 +24,3 @@ sudoku = {
 		sudokuPresenter.resize(tableId);
 	}
 };
-
-$('#sudoku input').on('input', function() {
-	sudokuPresenter.handleNumberChange(this);
-});
-
-$(document).ready(function() {
-	var tableId = '#sudoku';
-
-	sudoku.init(tableId);
-
-	$(window).on('resize', function() {
-		sudokuPresenter.resize(tableId)
-	});
-});
