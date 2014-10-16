@@ -21,7 +21,10 @@
     <script type="text/javascript" src="qunit/sinon-qunit.js"></script>
     <script type="text/javascript" src="../semantic/javascript/semantic.min.js"></script>
     <script type="text/javascript" src="../assets/javascript/menu.js"></script>
+
     <script type="text/javascript">
+        initMenu();
+
         QUnit.test('Clicking on link', function(assert) {
             assert.equal($('#link1').hasClass('active'), true);
             assert.equal($('#link2').hasClass('active'), false);
@@ -57,5 +60,6 @@
             assert.equal($('#link4').hasClass('active'), false);
         });
     </script>
+
 </body>
 </html>
