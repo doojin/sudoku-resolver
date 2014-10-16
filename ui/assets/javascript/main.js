@@ -1,3 +1,4 @@
 $(document).ready(function() {
-    sudoku.init('#sudoku');
+    var sudoku = new Sudoku('#sudoku');
+    initMenu();
 });

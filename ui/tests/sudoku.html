@@ -10,7 +10,7 @@
     <div id="qunit-fixture">
         <div id="sudoku"></div>
     </div>
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script type="text/javascript" src="qunit/qunit.js"></script>
     <script type="text/javascript" src="qunit/sinon.js"></script>
     <script type="text/javascript" src="qunit/sinon-qunit.js"></script>
@@ -18,14 +18,39 @@
     <script type="text/javascript" src="../assets/javascript/sudoku.js"></script>
 
     <script type="text/javascript">
+        function newSudoku() {
+            Sudoku.count = 0;
+            var sudoku = new Sudoku('#sudoku');
+            return sudoku;
+        }
+        
         QUnit.test('sudoku.init()', function(assert) {
+            var sudoku = newSudoku();
             var spy = sinon.spy(sudoku, 'resize');
             sudoku.init('#sudoku');
+            
             // Structure of table must be correct
             assert.equal($('#sudoku .sudoku tr').length, 9);
             assert.equal($('#sudoku .sudoku td').length, 81);
             assert.equal($('#sudoku .sudoku input[type=text]').length, 81);
+            assert.equal(sudoku.table, '.sudoku-table-1');
             sinon.assert.calledOnce(spy);
+        });
+        
+        QUnit.test('sudoku.changeCellBgIfNeed()', function(assert) {
+            var sudoku = newSudoku();
+            var input ='input[data-row=5][data-col=5]'; 
+            
+            // Empty cell
+            $(input).val('');
+            sudoku.changeCellBgIfNeed(5, 5);
+            assert.equal($(input).hasClass('active'), false);
+            
+            // Filled cell
+            $(input).val('1');
+            sudoku.changeCellBgIfNeed(5, 5);
+            assert.equal($(input).hasClass('active'), true);
+            
         });
     </script>
 
