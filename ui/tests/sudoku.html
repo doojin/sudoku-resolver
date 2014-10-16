@@ -119,7 +119,7 @@
         QUnit.test('sudokuPresenter.handleNumberChange()', function(assert) {
             assert.equal($('#input15').css('background-color'), 'rgb(255, 255, 255)');
 
-            $('#input15').val(5);
+            $('#input15').val('5');
             sudokuPresenter.handleNumberChange('#input15');
 
             assert.equal($('#input15').css('background-color'), 'rgb(238, 238, 238)');
@@ -140,6 +140,26 @@
             sudokuPresenter.resize(table);
 
             assert.equal($(table).height(), 200);
+        });
+
+        QUnit.test('sudoku.clearField()', function(assert) {
+            sudoku.init('#sudoku');
+
+            $('#input5').val('1');
+            assert.equal($('#input5').val(), '1');
+
+            sudoku.clearField();
+
+            assert.equal($('#input5').val(), '');
+        });
+
+        QUnit.test('sudoku.init()', function(assert) {
+            $('#input5').val('1');
+
+            sudoku.init('#sudoku');
+
+            assert.equal(sudoku.tableId, '#sudoku')
+            assert.equal($('#input5').val(), '');
         });
     </script>
 

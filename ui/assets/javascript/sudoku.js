@@ -17,10 +17,12 @@ sudoku = {
 	tableId: '',
 
 	init: function(tableId) {
-		// Clearing all data of sudoko field
-		$(tableId + ' input').val('');
+        this.tableId = tableId;
+        this.clearField();
+		sudokuPresenter.resize(this.tableId);
+	},
 
-		this.tableId = tableId;
-		sudokuPresenter.resize(tableId);
-	}
+    clearField: function() {
+        $(this.tableId + ' input').val('');
+    }
 };
