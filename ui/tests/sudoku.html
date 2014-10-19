@@ -43,14 +43,70 @@
             
             // Empty cell
             $(input).val('');
-            sudoku.changeCellBgIfNeed(5, 5);
+            var cell = sudoku.getCellByIndex(5, 5);
+            sudoku.changeCellBgIfNeed(cell);
             assert.equal($(input).hasClass('active'), false);
             
             // Filled cell
             $(input).val('1');
-            sudoku.changeCellBgIfNeed(5, 5);
+            sudoku.changeCellBgIfNeed(cell);
             assert.equal($(input).hasClass('active'), true);
+        });
+        
+        QUnit.test('sudoku.isNumberDiapasonWrong()', function(assert) {
+           var sudoku = newSudoku();
+           assert.equal(true, sudoku.isNumberDiapasonWrong(0));
+           assert.equal(true, sudoku.isNumberDiapasonWrong(10));
+           assert.equal(false, sudoku.isNumberDiapasonWrong(1));
+           assert.equal(false, sudoku.isNumberDiapasonWrong(9));
+        });
+        
+        QUnit.test('sudoku.getCellByIndex()', function(assert) {
+            var sudoku = newSudoku();
+            var cell = sudoku.getCellByIndex(5, 5);
+            assert.equal($(cell).val(), '');
             
+            var input = $('input[data-row=5][data-col=5]');
+            $(input).val('1');
+            assert.equal($(cell).val(), '1');
+        });
+        
+        QUnit.test('sudoku.revertValueIfNeed()', function(assert) {
+           var sudoku = newSudoku();
+           sudoku.lastValue = '5';
+           var cell = sudoku.getCellByIndex(2, 2);
+           
+           // Correct number, should not be reverted
+           $(cell).val('4');
+           sudoku.revertValueIfNeed(cell);
+           assert.equal($(cell).val(), '4');
+           
+           // Not a number, should be reverted
+           $(cell).val('d');
+           sudoku.revertValueIfNeed(cell);
+           assert.equal($(cell).val(), '5');
+           
+           // Number in a wrong diapason, should be reverted
+           $(cell).val('0');
+           sudoku.revertValueIfNeed(cell);
+           assert.equal($(cell).val(), '5');
+           
+           // Number in a wrong diapason, should be reverted
+           $(cell).val('10');
+           sudoku.revertValueIfNeed(cell);
+           assert.equal($(cell).val(), '5');
+           
+           // Empty cell, should not be reverted
+           $(cell).val('');
+           sudoku.revertValueIfNeed(cell);
+           assert.equal($(cell).val(), '');
+        });
+        
+        QUnit.test('sudoku.containsNonNumericSymbols()', function(assert) {
+           var sudoku = newSudoku();
+           assert.equal(sudoku.containsNonNumericSymbols('5'), false);
+           assert.equal(sudoku.containsNonNumericSymbols('d'), true);
+           assert.equal(sudoku.containsNonNumericSymbols('5d'), true);
         });
     </script>
 
