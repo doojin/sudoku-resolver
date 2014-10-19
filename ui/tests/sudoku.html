@@ -138,6 +138,26 @@
            var col = sudoku.getCol(4);
            assert.deepEqual(col, ['0', '0', '0', '0', '1', '0', '2', '0', '3']);
         });
+        
+        QUnit.test('sudoku.getSquare()', function(assert) {
+            var sudoku = newSudoku();
+            
+            var cell33 = sudoku.getCellByIndex(3, 3);
+            var cell44 = sudoku.getCellByIndex(4, 4);
+            var cell55 = sudoku.getCellByIndex(5, 5);
+            
+            $(cell33).val('1');
+            $(cell44).val('2');
+            $(cell55).val('3');
+            
+            var square = sudoku.getSquare(3, 3);
+            var expected = [
+                ['1', '0', '0'],
+                ['0', '2', '0'],
+                ['0', '0', '3']
+            ];
+            assert.deepEqual(square, expected);
+        });
     </script>
 
 </body>

@@ -118,6 +118,33 @@ Sudoku.prototype.getCol = function(colIndex) {
     return colValues;
 };
 
+// Gets array of values for square by row and column indexes
+Sudoku.prototype.getSquare = function(rowIndex, colIndex) {
+    var result = [[], [], []];
+    
+    var squareIndex = 3 * Math.floor(rowIndex / 3.0) + Math.floor(colIndex / 3.0);
+    console.log(squareIndex);
+
+    var startRow = Math.floor(squareIndex / 3.0) * 3;
+    var startCol = (squareIndex - startRow) * 3;
+    
+    var x = 0;
+    var y = 0;
+    
+    for (var i=startRow; i<startRow+3; i++) {
+        for (var j=startCol; j<startCol+3; j++) {
+            var val = $(this.getCellByIndex(i, j)).val();
+            val = val ? val : '0';
+            result[x][y] = val;
+            x++;
+        }
+        y++;
+        x = 0;
+    }
+    
+    return result;
+};
+
 Sudoku.prototype.registerEventListeners = function() {
     var _self = this;
     
