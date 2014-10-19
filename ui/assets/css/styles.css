@@ -35,3 +35,6 @@ h1, h2, h3 {color: rgba(0, 0, 0, 0.75);}
 .sudoku .active {background-color: #F3F3F3;}
 .sudoku td:nth-child(3), .sudoku td:nth-child(6) {border-right: solid 1px #888888;}
 .sudoku tr:nth-child(3) td, .sudoku tr:nth-child(6) td {border-bottom: solid 1px #888888;}
+
+#history td {padding: 20px;}
+#history th {padding: 10px 20px;}

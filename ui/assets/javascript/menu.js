@@ -13,3 +13,7 @@ function initMenu() {
     dropdown.dropdown({on: 'hover'});
     menuItem.on('click', handler.activate);
 }
+
+$(document).ready(function() {
+   initMenu(); 
+});

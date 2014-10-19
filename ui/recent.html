@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Sudoku Resolver</title>
+	<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans:400,700"/>
+	<link rel="stylesheet" type="text/css" href="assets/css/styles.css"/>
+	<link rel="stylesheet" type="text/css" href="semantic/css/semantic.min.css"/>
+	<script type="text/javascript" src="assets/javascript/buttons.js"></script>
+	<script type="text/javascript">stLight.options({publisher: "7db29667-ce3d-4412-924e-90197824219f", doNotHash: false, doNotCopy: false, hashAddressBar: false});</script>
+</head>
+<body>
+	<div class="ui fixed inverted top menu">
+		<div class="container">
+			<a href="/" class="item">Solve Sudoku</a>
+			<a href="/recent" class="item">Recently Solved</a>
+			<div class="ui dropdown item">
+				Like or Share <i class="icon dropdown"></i>
+				<div class="menu">
+					<div class="item">
+						<span class="st_facebook_large" displayText="Facebook"></span>
+						<span class="st_twitter_large" displayText="Tweet"></span>
+						<span class="st_googleplus_large" displayText="Google +"></span>
+						<span class="st_vkontakte_large" displayText="Vkontakte"></span>
+					</div>
+				</div>
+				</div>
+				<a href="/rules" class="item right floated">
+				<i class="question icon"></i>
+				Sudoku Rules
+		    </a>
+		</div>
+	</div>
+	<div class="main container">
+		<div class="ui one column page grid">
+			<div class="ui column">
+				<table class="ui table segment" id="history">
+					<thead>
+						<tr>
+							<th>When</th>
+							<th>IP Address</th>
+							<th>Solved in</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td><i class="calendar icon"></i>22 minute(s) ago</td>
+							<td>83.178.216.... (Latvia)</td>
+							<td><i class="time icon"></i>13 second(s)</td>
+							<td><a class="ui tiny black button" href="#">Open</a></td>
+						</tr>
+						<tr>
+							<td><i class="calendar icon"></i>3 hour(s) ago</td>
+							<td>83.178.216.... (Latvia)</td>
+							<td><i class="time icon"></i>2 second(s)</td>
+							<td><a class="ui tiny black button" href="#">Open</a></td>
+						</tr>
+						<tr>
+							<td><i class="calendar icon"></i>1 day(s) ago</td>
+							<td>83.178.216.... (Latvia)</td>
+							<td><i class="time icon"></i>5 second(s)</td>
+							<td><a class="ui tiny black button" href="#">Open</a></td>
+						</tr>
+						<tr>
+							<td><i class="calendar icon"></i>22 minute(s) ago</td>
+							<td>83.178.216.... (Latvia)</td>
+							<td><i class="time icon"></i>13 second(s)</td>
+							<td><a class="ui tiny black button" href="#">Open</a></td>
+						</tr>
+						<tr>
+							<td><i class="calendar icon"></i>3 hour(s) ago</td>
+							<td>83.178.216.... (Latvia)</td>
+							<td><i class="time icon"></i>2 second(s)</td>
+							<td><a class="ui tiny black button" href="#">Open</a></td>
+						</tr>
+						<tr>
+							<td><i class="calendar icon"></i>1 day(s) ago</td>
+							<td>83.178.216.... (Latvia)</td>
+							<td><i class="time icon"></i>5 second(s)</td>
+							<td><a class="ui tiny black button" href="#">Open</a></td>
+						</tr>
+						<tr>
+							<td><i class="calendar icon"></i>22 minute(s) ago</td>
+							<td>83.178.216.... (Latvia)</td>
+							<td><i class="time icon"></i>13 second(s)</td>
+							<td><a class="ui tiny black button" href="#">Open</a></td>
+						</tr>
+						<tr>
+							<td><i class="calendar icon"></i>3 hour(s) ago</td>
+							<td>83.178.216.... (Latvia)</td>
+							<td><i class="time icon"></i>2 second(s)</td>
+							<td><a class="ui tiny black button" href="#">Open</a></td>
+						</tr>
+						<tr>
+							<td><i class="calendar icon"></i>1 day(s) ago</td>
+							<td>83.178.216.... (Latvia)</td>
+							<td><i class="time icon"></i>5 second(s)</td>
+							<td><a class="ui tiny black button" href="#">Open</a></td>
+						</tr>
+						<tr>
+							<td><i class="calendar icon"></i>22 minute(s) ago</td>
+							<td>83.178.216.... (Latvia)</td>
+							<td><i class="time icon"></i>13 second(s)</td>
+							<td><a class="ui tiny black button" href="#">Open</a></td>
+						</tr>
+						<tr>
+							<td><i class="calendar icon"></i>3 hour(s) ago</td>
+							<td>83.178.216.... (Latvia)</td>
+							<td><i class="time icon"></i>2 second(s)</td>
+							<td><a class="ui tiny black button" href="#">Open</a></td>
+						</tr>
+						<tr>
+							<td><i class="calendar icon"></i>1 day(s) ago</td>
+							<td>83.178.216.... (Latvia)</td>
+							<td><i class="time icon"></i>5 second(s)</td>
+							<td><a class="ui tiny black button" href="#">Open</a></td>
+						</tr>
+						<tr>
+							<td><i class="calendar icon"></i>22 minute(s) ago</td>
+							<td>83.178.216.... (Latvia)</td>
+							<td><i class="time icon"></i>13 second(s)</td>
+							<td><a class="ui tiny black button" href="#">Open</a></td>
+						</tr>
+						<tr>
+							<td><i class="calendar icon"></i>3 hour(s) ago</td>
+							<td>83.178.216.... (Latvia)</td>
+							<td><i class="time icon"></i>2 second(s)</td>
+							<td><a class="ui tiny black button" href="#">Open</a></td>
+						</tr>
+						<tr>
+							<td><i class="calendar icon"></i>1 day(s) ago</td>
+							<td>83.178.216.... (Latvia)</td>
+							<td><i class="time icon"></i>5 second(s)</td>
+							<td><a class="ui tiny black button" href="#">Open</a></td>
+						</tr>
+						<tr>
+							<td><i class="calendar icon"></i>22 minute(s) ago</td>
+							<td>83.178.216.... (Latvia)</td>
+							<td><i class="time icon"></i>13 second(s)</td>
+							<td><a class="ui tiny black button" href="#">Open</a></td>
+						</tr>
+						<tr>
+							<td><i class="calendar icon"></i>3 hour(s) ago</td>
+							<td>83.178.216.... (Latvia)</td>
+							<td><i class="time icon"></i>2 second(s)</td>
+							<td><a class="ui tiny black button" href="#">Open</a></td>
+						</tr>
+						<tr>
+							<td><i class="calendar icon"></i>1 day(s) ago</td>
+							<td>83.178.216.... (Latvia)</td>
+							<td><i class="time icon"></i>5 second(s)</td>
+							<td><a class="ui tiny black button" href="#">Open</a></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script type="text/javascript" src="semantic/javascript/semantic.min.js"></script>
+	<script type="text/javascript" src="assets/javascript/menu.js"></script>
+	<script type="text/javascript" src="assets/javascript/recent.js"></script>
+	<script type="text/javascript" src="assets/javascript/modules/recent.js"></script>
+</body>
+</html>
