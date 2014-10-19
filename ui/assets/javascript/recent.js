@@ -19,3 +19,8 @@ Recent.prototype.getRecords = function(records) {
     }
     return htmls;
 };
+
+// Creates link for solved sudoku
+Recent.prototype.getHistoryLink = function(id) {
+    return '/result/' + id;
+};
