@@ -81,6 +81,7 @@ Sudoku.prototype.isNumberDiapasonWrong = function(number) {
     return false;
 };
 
+// Returns true if value contains at least one non-numeric symbol
 Sudoku.prototype.containsNonNumericSymbols = function(value) {
     var validNumber = new RegExp(/^[0-9]+$/);
     return !validNumber.test(value);
