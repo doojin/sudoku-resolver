@@ -92,6 +92,32 @@ Sudoku.prototype.getCellByIndex = function(row, col) {
     return $(this.table + ' input[data-row='+row+'][data-col='+col+']');
 };
 
+// Returns array of values for row by row index
+Sudoku.prototype.getRow = function(rowIndex) {
+    var rowValues = [];
+    var rowInputs = $('input[data-row=' + rowIndex + ']');
+    for (var i=0; i<rowInputs.length; i++) {
+        var rowInput = rowInputs[i];
+        var val = $(rowInput).val();
+        val = val ? val : '0';
+        rowValues.push(val);
+    }
+    return rowValues;
+};
+
+// Returns array of values for column by column index
+Sudoku.prototype.getCol = function(colIndex) {
+    var colValues = [];
+    var colInputs = $('input[data-col=' + colIndex + ']');
+    for (var i=0; i<colInputs.length; i++) {
+        var rowInput = colInputs[i];
+        var val = $(rowInput).val();
+        val = val ? val : '0';
+        colValues.push(val);
+    }
+    return colValues;
+};
+
 Sudoku.prototype.registerEventListeners = function() {
     var _self = this;
     

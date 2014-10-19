@@ -108,6 +108,36 @@
            assert.equal(sudoku.containsNonNumericSymbols('d'), true);
            assert.equal(sudoku.containsNonNumericSymbols('5d'), true);
         });
+        
+        QUnit.test('sudoku.getRow()', function(assert) {
+            var sudoku = newSudoku();
+            
+            var cell20 = sudoku.getCellByIndex(2, 0);
+            var cell25 = sudoku.getCellByIndex(2, 5);
+            var cell28 = sudoku.getCellByIndex(2, 8);
+            
+            $(cell20).val('1');
+            $(cell25).val('2');
+            $(cell28).val('3');
+            
+            var row = sudoku.getRow(2);
+            assert.deepEqual(row, ['1', '0', '0', '0', '0', '2', '0', '0', '3']);
+        });
+        
+        QUnit.test('sudoku.getCol()', function(assert) {
+           var sudoku = newSudoku();
+           
+           var cell44 = sudoku.getCellByIndex(4, 4);
+           var cell64 = sudoku.getCellByIndex(6, 4);
+           var cell84 = sudoku.getCellByIndex(8, 4);
+           
+           $(cell44).val('1');
+           $(cell64).val('2');
+           $(cell84).val('3');
+           
+           var col = sudoku.getCol(4);
+           assert.deepEqual(col, ['0', '0', '0', '0', '1', '0', '2', '0', '3']);
+        });
     </script>
 
 </body>
