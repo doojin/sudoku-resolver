@@ -158,6 +158,49 @@
             ];
             assert.deepEqual(square, expected);
         });
+        
+        QUnit.test('sudoku.isLineUnique()', function(assert) {
+           var sudoku = newSudoku();
+           
+           var line1 = ['1', '2', '3', '4', '5', '6', '7', '8'];
+           assert.equal(sudoku.isLineUnique(line1), true);
+           
+           var line2 = ['1', '0', '3', '4', '0', '6', '7', '0'];
+           assert.equal(sudoku.isLineUnique(line2), true);
+           
+           var line3 = ['1', '0', '0', '0', '0', '0', '1', '0'];
+           assert.equal(sudoku.isLineUnique(line3), false);
+        });
+        
+        QUnit.test('sudoku.isNumberUnique()', function(assert) {
+           var sudoku = newSudoku();
+           
+           var cell11 = sudoku.getCellByIndex(1, 1);
+           var cell17 = sudoku.getCellByIndex(1, 7);
+           var cell67 = sudoku.getCellByIndex(6, 7);
+           var cell28 = sudoku.getCellByIndex(2, 8);
+           
+           // Row numbers are not unique
+           $(cell11).val('1');
+           $(cell17).val('1');
+           assert.equal(sudoku.isNumberUnique(cell17), false);
+           
+           // All numbers are unique
+           $(cell17).val('9');
+           assert.equal(sudoku.isNumberUnique(cell17), true);
+           
+           // Row numbers are not unique
+           $(cell67).val('9');
+           assert.equal(sudoku.isNumberUnique(cell17), false);
+           
+           // All numbers are unique
+           $(cell67).val('8');
+           assert.equal(sudoku.isNumberUnique(cell17), true);
+           
+           // Square numbers are not unique
+           $(cell28).val('9');
+           assert.equal(sudoku.isNumberUnique(cell17), false);
+        });
     </script>
 
 </body>

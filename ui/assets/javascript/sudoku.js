@@ -68,7 +68,7 @@ Sudoku.prototype.revertValueIfNeed = function(cell) {
     }
     var number = parseInt(value);
     
-    if (this.containsNonNumericSymbols(value) || this.isNumberDiapasonWrong(number)) {
+    if (this.containsNonNumericSymbols(value) || this.isNumberDiapasonWrong(number) || !this.isNumberUnique(cell)) {
         $(cell).val(this.lastValue);
     }
 };
@@ -123,7 +123,6 @@ Sudoku.prototype.getSquare = function(rowIndex, colIndex) {
     var result = [[], [], []];
     
     var squareIndex = 3 * Math.floor(rowIndex / 3.0) + Math.floor(colIndex / 3.0);
-    console.log(squareIndex);
 
     var startRow = Math.floor(squareIndex / 3.0) * 3;
     var startCol = (squareIndex - startRow) * 3;
@@ -143,6 +142,38 @@ Sudoku.prototype.getSquare = function(rowIndex, colIndex) {
     }
     
     return result;
+};
+
+// Returns true if values of line are unique 
+Sudoku.prototype.isLineUnique = function(line) {
+    for (var i=0; i<line.length-1; i++) {
+        for (var j=i+1; j<line.length; j++) {
+            if (line[i] == '0') {
+                continue;
+            }
+            if (line[i] == line[j]) {
+                return false;
+            }
+        }
+    }
+    return true;
+};
+
+// Checks if number is unique on the row, column and square
+Sudoku.prototype.isNumberUnique = function(cell) {
+    var rowIndex = $(cell).data('row');
+    var colIndex = $(cell).data('col');
+    
+    var row = this.getRow(rowIndex);
+    var col = this.getCol(colIndex);
+    var square = this.getSquare(rowIndex, colIndex);
+    var squareLine = [];
+    for (var i=0; i<3; i++) {
+        for (var j=0; j<3; j++) {
+            squareLine.push(square[i][j]);
+        }
+    }
+    return this.isLineUnique(row) && this.isLineUnique(col) && this.isLineUnique(squareLine);
 };
 
 Sudoku.prototype.registerEventListeners = function() {
