@@ -4,16 +4,13 @@ import (
     "net/http"
     
     "github.com/gorilla/mux"
-    "github.com/op/go-logging"
+    "code.google.com/p/log4go"
     
     "./handlers"
 )
 
 func main() {
-    messageFormat := "[%{level:.4s}] %{message}"
-    logging.SetFormatter(logging.MustStringFormatter(messageFormat))
-    logger := logging.MustGetLogger("sudoku resolver")
-    logger.Info("Application started")
+    log4go.Info("Application started")
     
     r := mux.NewRouter()
     
