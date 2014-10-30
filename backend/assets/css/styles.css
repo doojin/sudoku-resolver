@@ -1,0 +1,40 @@
+html, body {height: 100%;}
+body {margin: 0; font: normal 1rem "Open Sans"; background-color: #E3E3E3;}
+
+h1, h2, h3 {color: rgba(0, 0, 0, 0.75);}
+
+.top.menu {position: relative; height: 44px;}
+.top.menu .container {min-width: 600px;}
+
+.container {
+	width: 70%;
+	min-width: 400px;
+	margin: 0 auto;
+}
+
+.main {margin-top: 60px;}
+
+.label .long {margin-right: 10px;}
+
+.accordion .text {display: inline-block; width: 80%;}
+.accordion .icon {float: left !important; margin-top: 4px !important;}
+
+.sudoku {width: 100%; border-collapse: collapse;}
+.sudoku td {border: solid 1px #CDCDCD; width: 11.111%; height: 11.111%;}
+.sudoku td input {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    border: none;
+    text-align: center;
+    font: bold 22px "Open Sans";
+    color: #555555;
+    background-color: #FFFFFF;
+    outline: none;
+}
+.sudoku .active {background-color: #F3F3F3;}
+.sudoku td:nth-child(3), .sudoku td:nth-child(6) {border-right: solid 1px #888888;}
+.sudoku tr:nth-child(3) td, .sudoku tr:nth-child(6) td {border-bottom: solid 1px #888888;}
+
+#history td {padding: 20px;}
+#history th {padding: 10px 20px;}

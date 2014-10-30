@@ -1,0 +1,23 @@
+{
+  "name": "sudoku-resolver",
+  "version": "1.0.0",
+  "description": "Sudoku resolver",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/doojin/sudoku-resolver.git"
+  },
+  "author": "Dmitry Papka",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/doojin/sudoku-resolver/issues"
+  },
+  "homepage": "https://github.com/doojin/sudoku-resolver",
+  "dependencies": {
+    "express": "^4.10.1",
+    "express-handlebars": "^1.1.0"
+  }
+}

@@ -1,3 +1,5 @@
 .idea/
 .c9/
 src/
+node_modules/
+*.log

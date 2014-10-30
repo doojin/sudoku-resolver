@@ -1,6 +1,42 @@
 <!DOCTYPE html>
 <html>
+<head>
+	<title>Sudoku Resolver</title>
+	<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans:400,700"/>
+	<link rel="stylesheet" type="text/css" href="/css/styles.css"/>
+	<link rel="stylesheet" type="text/css" href="/semantic/css/semantic.min.css"/>
+	<script type="text/javascript" src="/javascript/buttons.js"></script>
+	<script type="text/javascript">stLight.options({publisher: "7db29667-ce3d-4412-924e-90197824219f", doNotHash: false, doNotCopy: false, hashAddressBar: false});</script>
+</head>
 <body>
-{{{body}}}
+	<div class="ui fixed inverted top menu">
+		<div class="container">
+			<a href="/" class="item">Solve Sudoku</a>
+			<a href="/recent" class="item">Recently Solved</a>
+			<div class="ui dropdown item">
+				Like or Share <i class="icon dropdown"></i>
+				<div class="menu">
+					<div class="item">
+						<span class="st_facebook_large" displayText="Facebook"></span>
+						<span class="st_twitter_large" displayText="Tweet"></span>
+						<span class="st_googleplus_large" displayText="Google +"></span>
+						<span class="st_vkontakte_large" displayText="Vkontakte"></span>
+					</div>
+				</div>
+	      	</div>
+			<a href="/rules" class="item right floated">
+				<i class="question icon"></i>
+				Sudoku Rules
+		    </a>
+		</div>
+	</div>
+	<div class="main container">
+		{{{body}}}
+	</div>
+	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script type="text/javascript" src="/semantic/javascript/semantic.min.js"></script>
+	<script type="text/javascript" src="/javascript/menu.js"></script>
+	<script type="text/javascript" src="/javascript/history.js"></script>
+    <script type="text/javascript" src="/javascript/modules/main.js"></script>
 </body>
 </html>
