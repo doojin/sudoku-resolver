@@ -9,6 +9,11 @@ function apply(app) {
 	app.get('/', function(req, res) {
 		res.render('index');
 	});
+	
+	// List (history) of already solved sudoku
+	app.get('/recent', function(req, res) {
+		res.render('recent');	
+	});
 }
 
 exports.apply = apply;

@@ -1,5 +1,8 @@
-$(document).ready(function() {
+$(window).on('beforeunload', function() {
     $(window).scrollTop(0);
+});
+
+$(document).ready(function() {
     
     var current = 0;
     
