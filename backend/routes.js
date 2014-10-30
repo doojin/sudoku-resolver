@@ -1,11 +1,9 @@
 function apply(app) {
-	app.get('/', homepage);
-}
-
-// Project's homepage
-function homepage(req, res) {
-	res.type('text/plain');
-	res.send('Hello, world!');
+	
+	// Project's index (home) page
+	function homepage(req, res) {
+		res.render('index');
+	}
 }
 
 exports.apply = apply;
