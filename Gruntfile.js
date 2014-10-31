@@ -1,7 +1,8 @@
 module.exports = function(grunt) {
     
     var plugins = [
-        'grunt-contrib-qunit'
+        'grunt-contrib-qunit',
+        'grunt-contrib-copy'
     ];
     
     plugins.forEach(function(plugin) {
@@ -13,8 +14,17 @@ module.exports = function(grunt) {
             all: [
                 'ui/tests/*.html'
             ]
+        },
+        
+        copy: {
+            main: {
+                expand: true,
+                cwd: 'ui/assets/',
+                src: '**',
+                dest: 'backend/assets/'
+            }
         }
     });
     
-    grunt.registerTask('default', ['qunit']);
+    grunt.registerTask('default', ['copy', 'qunit']);
 };

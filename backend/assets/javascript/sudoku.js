@@ -95,7 +95,7 @@ Sudoku.prototype.getCellByIndex = function(row, col) {
 // Returns array of values for row by row index
 Sudoku.prototype.getRow = function(rowIndex) {
     var rowValues = [];
-    var rowInputs = $('input[data-row=' + rowIndex + ']');
+    var rowInputs = $(this.table + ' input[data-row=' + rowIndex + ']');
     for (var i=0; i<rowInputs.length; i++) {
         var rowInput = rowInputs[i];
         var val = $(rowInput).val();
@@ -108,7 +108,7 @@ Sudoku.prototype.getRow = function(rowIndex) {
 // Returns array of values for column by column index
 Sudoku.prototype.getCol = function(colIndex) {
     var colValues = [];
-    var colInputs = $('input[data-col=' + colIndex + ']');
+    var colInputs = $(this.table + ' input[data-col=' + colIndex + ']');
     for (var i=0; i<colInputs.length; i++) {
         var rowInput = colInputs[i];
         var val = $(rowInput).val();
