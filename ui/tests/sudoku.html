@@ -23,12 +23,12 @@
             var sudoku = new Sudoku('#sudoku');
             return sudoku;
         }
-        
+
         QUnit.test('sudoku.init()', function(assert) {
             var sudoku = newSudoku();
             var spy = sinon.spy(sudoku, 'resize');
             sudoku.init('#sudoku');
-            
+
             // Structure of table must be correct
             assert.equal($('#sudoku .sudoku tr').length, 9);
             assert.equal($('#sudoku .sudoku td').length, 81);
@@ -36,23 +36,23 @@
             assert.equal(sudoku.table, '.sudoku-table-1');
             sinon.assert.calledOnce(spy);
         });
-        
+
         QUnit.test('sudoku.changeCellBgIfNeed()', function(assert) {
             var sudoku = newSudoku();
-            var input ='input[data-row=5][data-col=5]'; 
-            
+            var input ='input[data-row=5][data-col=5]';
+
             // Empty cell
             $(input).val('');
             var cell = sudoku.getCellByIndex(5, 5);
             sudoku.changeCellBgIfNeed(cell);
             assert.equal($(input).hasClass('active'), false);
-            
+
             // Filled cell
             $(input).val('1');
             sudoku.changeCellBgIfNeed(cell);
             assert.equal($(input).hasClass('active'), true);
         });
-        
+
         QUnit.test('sudoku.isNumberDiapasonWrong()', function(assert) {
            var sudoku = newSudoku();
            assert.equal(true, sudoku.isNumberDiapasonWrong(0));
@@ -60,96 +60,96 @@
            assert.equal(false, sudoku.isNumberDiapasonWrong(1));
            assert.equal(false, sudoku.isNumberDiapasonWrong(9));
         });
-        
+
         QUnit.test('sudoku.getCellByIndex()', function(assert) {
             var sudoku = newSudoku();
             var cell = sudoku.getCellByIndex(5, 5);
             assert.equal($(cell).val(), '');
-            
+
             var input = $('input[data-row=5][data-col=5]');
             $(input).val('1');
             assert.equal($(cell).val(), '1');
         });
-        
+
         QUnit.test('sudoku.revertValueIfNeed()', function(assert) {
            var sudoku = newSudoku();
            sudoku.lastValue = '5';
            var cell = sudoku.getCellByIndex(2, 2);
-           
+
            // Correct number, should not be reverted
            $(cell).val('4');
            sudoku.revertValueIfNeed(cell);
            assert.equal($(cell).val(), '4');
-           
+
            // Not a number, should be reverted
            $(cell).val('d');
            sudoku.revertValueIfNeed(cell);
            assert.equal($(cell).val(), '5');
-           
+
            // Number in a wrong diapason, should be reverted
            $(cell).val('0');
            sudoku.revertValueIfNeed(cell);
            assert.equal($(cell).val(), '5');
-           
+
            // Number in a wrong diapason, should be reverted
            $(cell).val('10');
            sudoku.revertValueIfNeed(cell);
            assert.equal($(cell).val(), '5');
-           
+
            // Empty cell, should not be reverted
            $(cell).val('');
            sudoku.revertValueIfNeed(cell);
            assert.equal($(cell).val(), '');
         });
-        
+
         QUnit.test('sudoku.containsNonNumericSymbols()', function(assert) {
            var sudoku = newSudoku();
            assert.equal(sudoku.containsNonNumericSymbols('5'), false);
            assert.equal(sudoku.containsNonNumericSymbols('d'), true);
            assert.equal(sudoku.containsNonNumericSymbols('5d'), true);
         });
-        
+
         QUnit.test('sudoku.getRow()', function(assert) {
             var sudoku = newSudoku();
-            
+
             var cell20 = sudoku.getCellByIndex(2, 0);
             var cell25 = sudoku.getCellByIndex(2, 5);
             var cell28 = sudoku.getCellByIndex(2, 8);
-            
+
             $(cell20).val('1');
             $(cell25).val('2');
             $(cell28).val('3');
-            
+
             var row = sudoku.getRow(2);
             assert.deepEqual(row, ['1', '0', '0', '0', '0', '2', '0', '0', '3']);
         });
-        
+
         QUnit.test('sudoku.getCol()', function(assert) {
            var sudoku = newSudoku();
-           
+
            var cell44 = sudoku.getCellByIndex(4, 4);
            var cell64 = sudoku.getCellByIndex(6, 4);
            var cell84 = sudoku.getCellByIndex(8, 4);
-           
+
            $(cell44).val('1');
            $(cell64).val('2');
            $(cell84).val('3');
-           
+
            var col = sudoku.getCol(4);
            assert.deepEqual(col, ['0', '0', '0', '0', '1', '0', '2', '0', '3']);
         });
-        
+
         QUnit.test('sudoku.getSquare()', function(assert) {
             var sudoku = newSudoku();
-            
+
             var cell33 = sudoku.getCellByIndex(3, 3);
             var cell44 = sudoku.getCellByIndex(4, 4);
             var cell55 = sudoku.getCellByIndex(5, 5);
-            
+
             $(cell33).val('1');
             $(cell44).val('2');
             $(cell55).val('3');
-            
+
             var square = sudoku.getSquare(3, 3);
             var expected = [
                 ['1', '0', '0'],
@@ -158,48 +158,72 @@
             ];
             assert.deepEqual(square, expected);
         });
-        
+
         QUnit.test('sudoku.isLineUnique()', function(assert) {
            var sudoku = newSudoku();
-           
+
            var line1 = ['1', '2', '3', '4', '5', '6', '7', '8'];
            assert.equal(sudoku.isLineUnique(line1), true);
-           
+
            var line2 = ['1', '0', '3', '4', '0', '6', '7', '0'];
            assert.equal(sudoku.isLineUnique(line2), true);
-           
+
            var line3 = ['1', '0', '0', '0', '0', '0', '1', '0'];
            assert.equal(sudoku.isLineUnique(line3), false);
         });
-        
+
         QUnit.test('sudoku.isNumberUnique()', function(assert) {
            var sudoku = newSudoku();
-           
+
            var cell11 = sudoku.getCellByIndex(1, 1);
            var cell17 = sudoku.getCellByIndex(1, 7);
            var cell67 = sudoku.getCellByIndex(6, 7);
            var cell28 = sudoku.getCellByIndex(2, 8);
-           
+
            // Row numbers are not unique
            $(cell11).val('1');
            $(cell17).val('1');
            assert.equal(sudoku.isNumberUnique(cell17), false);
-           
+
            // All numbers are unique
            $(cell17).val('9');
            assert.equal(sudoku.isNumberUnique(cell17), true);
-           
+
            // Row numbers are not unique
            $(cell67).val('9');
            assert.equal(sudoku.isNumberUnique(cell17), false);
-           
+
            // All numbers are unique
            $(cell67).val('8');
            assert.equal(sudoku.isNumberUnique(cell17), true);
-           
+
            // Square numbers are not unique
            $(cell28).val('9');
            assert.equal(sudoku.isNumberUnique(cell17), false);
+        });
+
+        QUnit.test('sudoku.getMatrix()', function(assert) {
+            var sudoku = newSudoku();
+
+            for (var i=0; i<9; i++) {
+                var cell = sudoku.getCellByIndex(i, i);
+                $(cell).val(i+1);
+            }
+
+            var matrix = sudoku.getMatrix();
+            var expectedMatrix = [
+                ['1', '0', '0', '0', '0', '0', '0', '0', '0'],
+                ['0', '2', '0', '0', '0', '0', '0', '0', '0'],
+                ['0', '0', '3', '0', '0', '0', '0', '0', '0'],
+                ['0', '0', '0', '4', '0', '0', '0', '0', '0'],
+                ['0', '0', '0', '0', '5', '0', '0', '0', '0'],
+                ['0', '0', '0', '0', '0', '6', '0', '0', '0'],
+                ['0', '0', '0', '0', '0', '0', '7', '0', '0'],
+                ['0', '0', '0', '0', '0', '0', '0', '8', '0'],
+                ['0', '0', '0', '0', '0', '0', '0', '0', '9']
+            ];
+
+            assert.deepEqual(matrix, expectedMatrix);
         });
     </script>
 

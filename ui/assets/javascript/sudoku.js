@@ -35,7 +35,7 @@ Sudoku.prototype.init = function(element) {
     }
 
     $(element).html(sudokuTable);
-    
+
     this.resize();
     this.registerEventListeners();
 };
@@ -44,7 +44,7 @@ Sudoku.prototype.init = function(element) {
 Sudoku.prototype.resize = function() {
     var width = $(this.table).width();
     $(this.table).css('height', width);
-    
+
     var fontSize = (width / 18) + 'px';
     $(this.table + ' input').css('font-size', fontSize);
 };
@@ -67,7 +67,7 @@ Sudoku.prototype.revertValueIfNeed = function(cell) {
         return;
     }
     var number = parseInt(value);
-    
+
     if (this.containsNonNumericSymbols(value) || this.isNumberDiapasonWrong(number) || !this.isNumberUnique(cell)) {
         $(cell).val(this.lastValue);
     }
@@ -118,18 +118,27 @@ Sudoku.prototype.getCol = function(colIndex) {
     return colValues;
 };
 
+// Get all values of sudoku field as 2d array
+Sudoku.prototype.getMatrix = function() {
+   var result = [];
+   for (var i=0; i<9; i++) {
+      result.push(this.getRow(i));
+   }
+   return result;
+};
+
 // Gets array of values for square by row and column indexes
 Sudoku.prototype.getSquare = function(rowIndex, colIndex) {
     var result = [[], [], []];
-    
+
     var squareIndex = 3 * Math.floor(rowIndex / 3.0) + Math.floor(colIndex / 3.0);
 
     var startRow = Math.floor(squareIndex / 3.0) * 3;
     var startCol = (squareIndex - startRow) * 3;
-    
+
     var x = 0;
     var y = 0;
-    
+
     for (var i=startRow; i<startRow+3; i++) {
         for (var j=startCol; j<startCol+3; j++) {
             var val = $(this.getCellByIndex(i, j)).val();
@@ -140,11 +149,11 @@ Sudoku.prototype.getSquare = function(rowIndex, colIndex) {
         y++;
         x = 0;
     }
-    
+
     return result;
 };
 
-// Returns true if values of line are unique 
+// Returns true if values of line are unique
 Sudoku.prototype.isLineUnique = function(line) {
     for (var i=0; i<line.length-1; i++) {
         for (var j=i+1; j<line.length; j++) {
@@ -163,7 +172,7 @@ Sudoku.prototype.isLineUnique = function(line) {
 Sudoku.prototype.isNumberUnique = function(cell) {
     var rowIndex = $(cell).data('row');
     var colIndex = $(cell).data('col');
-    
+
     var row = this.getRow(rowIndex);
     var col = this.getCol(colIndex);
     var square = this.getSquare(rowIndex, colIndex);
@@ -178,16 +187,16 @@ Sudoku.prototype.isNumberUnique = function(cell) {
 
 Sudoku.prototype.registerEventListeners = function() {
     var _self = this;
-    
+
     // Resize Sudoku field on window resize
     $(window).resize(function() {
         _self.resize();
     });
-    
+
     $(this.table + ' input').on('focus', function() {
         _self.lastValue = $(this).val();
     });
-    
+
     $(this.table + ' input').on('input', function() {
         var row = $(this).data('row');
         var col = $(this).data('col');
