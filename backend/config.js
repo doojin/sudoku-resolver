@@ -3,7 +3,7 @@ var config = {
 
     URL_GO_SERVER: 'http://localhost:8081/post-sudoku',
 
-    HISTORY_INIT_COUNT: 100
+    HISTORY_COUNT: 50
 };
 
 module.exports = config;

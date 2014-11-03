@@ -18,6 +18,7 @@ record.prototype.create = function() {
     var _self = this;
     record.count(null, function(err, count) {
         _self.order = count;
+        _self.date = Date.now(),
         _self.save();
     });
 };
