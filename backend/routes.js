@@ -14,6 +14,27 @@ function apply(app) {
 		res.render('index');
 	});
 
+	// Solving sudoku
+	app.post('/post-sudoku', function(req, res) {
+		// Getting matrix from request
+		var matrix = req.body.matrix;
+		var now = Date.now();
+		// Sending matrix to Go server
+		goserver.sendMatrix(matrix, function(responseObject) {
+			// Save to database if sudoku is solved
+			if (responseObject.solved) {
+				new Record({
+					matrix: responseObject.matrix,
+					marked: helper.getMarked(JSON.parse(matrix)),
+					ip: req.connection.remoteAddress,
+					time: Date.now() - now
+				}).create();
+			}
+			// Sending response back to client
+			res.json(responseObject);
+		});
+	});
+
 	// List (history) of already solved sudoku
 	app.get('/recent', function(req, res) {
 		new Record().getLastRecords(config.HISTORY_COUNT, function(records) {
@@ -34,27 +55,6 @@ function apply(app) {
 			res.render('recent', {
 				records: filteredRecords
 			});
-		});
-	});
-
-	// Solvin sudoku
-	app.post('/post-sudoku', function(req, res) {
-		// Getting matrix from request
-		var matrix = req.body.matrix;
-		var now = Date.now();
-		// Sending matrix to Go server
-		goserver.sendMatrix(matrix, function(responseObject) {
-			// Save to database if sudoku is solved
-			if (responseObject.solved) {
-				new Record({
-					matrix: responseObject.matrix,
-					marked: helper.getMarked(JSON.parse(matrix)),
-					ip: req.connection.remoteAddress,
-					time: Date.now() - now
-				}).create();
-			}
-			// Sending response back to client
-			res.json(responseObject);
 		});
 	});
 }
