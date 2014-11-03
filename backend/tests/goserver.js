@@ -1,4 +1,4 @@
-var goserver = require('../goserver');
+var goserver = require('../lib/goserver');
 
 exports.test_extractResponse_shouldExtractSuccessfullResponse = function(test) {
     var json = '{"Status":true,"Matrix":[["1","2","3"],["1","2","3"],["1","2","3"]]}';

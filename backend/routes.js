@@ -1,7 +1,9 @@
 var express = require('express');
 var request = require('request');
-var goserver = require('./goserver')
+var helper = require('./lib/helper');
+var goserver = require('./lib/goserver')
 var config = require('./config');
+var Record = require('./model/record');
 
 function apply(app) {
 
@@ -22,6 +24,7 @@ function apply(app) {
 		var responseObject;
 		// Getting matrix from UI
 		var matrix = req.body.matrix;
+		var marked = helper.getMarked(JSON.parse(matrix));
 		// Sending matrix to Go server
 		request.post(
 		    config.URL_GO_SERVER,
@@ -34,6 +37,11 @@ function apply(app) {
 		    function (error, response, json) {
 		        if (!error && response.statusCode == 200) {
 					responseObject = goserver.extractResponse(json);
+					var record = new Record({
+						matrix: responseObject.matrix,
+						marked: marked
+					});
+					record.create();
 				}
 				else {
 					responseObject = {
