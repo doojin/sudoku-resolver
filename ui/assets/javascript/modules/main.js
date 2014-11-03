@@ -2,11 +2,8 @@ var MESSAGE_POSITION = 'bottom-right';
 var MESSAGE_ERROR = 'error';
 var MESSAGE_SUCCESS = 'success';
 var MESSAGE_SHOW = 'showToast';
-
 var ERROR_SERVER = 'Server can\'t respond right now';
-
 var URL_PROCESS = '/post-sudoku';
-
 var SOLVE_BUTTON_ID = '#solve';
 
 $(document).ready(function() {

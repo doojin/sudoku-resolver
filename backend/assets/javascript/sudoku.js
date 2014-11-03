@@ -45,7 +45,7 @@ Sudoku.prototype.resize = function() {
     var width = $(this.table).width();
     $(this.table).css('height', width);
 
-    var fontSize = (width / 18) + 'px';
+    var fontSize = Math.floor(width / 18) + 'px';
     $(this.table + ' input').css('font-size', fontSize);
 };
 
