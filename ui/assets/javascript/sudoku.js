@@ -138,7 +138,11 @@ Sudoku.prototype.setMatrix = function(matrix) {
             $(cell).val(matrix[i][j]);
         }
     }
+};
 
+// Disables sudoku cells
+Sudoku.prototype.freeze = function() {
+    $(this.table + ' input').prop('disabled', true);
 };
 
 // Gets array of values for square by row and column indexes

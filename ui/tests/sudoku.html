@@ -264,6 +264,19 @@
             assert.equal($(cell77).val(), 8);
             assert.equal($(cell88).val(), 9);
         });
+
+        QUnit.test('sudoku.freeze()', function(assert) {
+            var sudoku = newSudoku();
+
+            sudoku.freeze();
+
+            for (var i=0; i<9; i++) {
+                for (var j=0; j<9; j++) {
+                    var cell = sudoku.getCellByIndex(i, j);
+                    assert.equal($(cell).prop('disabled'), true);
+                }
+            }
+        });
     </script>
 
 </body>

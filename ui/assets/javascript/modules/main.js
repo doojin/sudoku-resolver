@@ -7,10 +7,12 @@ var ERROR_SERVER = 'Server can\'t respond right now';
 
 var URL_PROCESS = '/post-sudoku';
 
+var SOLVE_BUTTON_ID = '#solve';
+
 $(document).ready(function() {
     var sudoku = new Sudoku('#sudoku');
 
-    $('#solve').on('click', function() {
+    $(SOLVE_BUTTON_ID).on('click', function() {
         var _self = this;
         // Don't do anything if button is disabled
         if ($(this).hasClass('disabled')) return;
@@ -20,8 +22,8 @@ $(document).ready(function() {
         var matrix = sudoku.getMatrix();
         var matrixJson = JSON.stringify(matrix);
         getSudokuResult(matrixJson, function(result) {
-            processResult(sudoku, result);
             $(_self).removeClass('disabled');
+            processResult(sudoku, result);
         });
     });
 });
@@ -50,6 +52,8 @@ function getSudokuResult(matrix, callback) {
 function processResult(sudoku, result) {
     if (result.solved) {
         sudoku.setMatrix(result.matrix);
+        sudoku.freeze();
+        $(SOLVE_BUTTON_ID).addClass('disabled');
         successMessage(result.message);
     } else {
         errorMessage(result.error);
