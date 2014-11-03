@@ -1,3 +1,12 @@
+var MESSAGE_POSITION = 'bottom-right';
+var MESSAGE_ERROR = 'error';
+var MESSAGE_SUCCESS = 'success';
+var MESSAGE_SHOW = 'showToast';
+
+var ERROR_SERVER = 'Server can\'t respond right now';
+
+var URL_PROCESS = '/post-sudoku';
+
 $(document).ready(function() {
     var sudoku = new Sudoku('#sudoku');
 
@@ -20,7 +29,7 @@ $(document).ready(function() {
 // Getting result from server
 function getSudokuResult(matrix, callback) {
     $.ajax({
-        url: '/post-sudoku',
+        url: URL_PROCESS,
         type: 'POST',
         data: {
             matrix: matrix
@@ -31,7 +40,7 @@ function getSudokuResult(matrix, callback) {
         error: function(data) {
             callback({
                 solved: false,
-                error: 'Server can\'t respond right now'
+                error: ERROR_SERVER
             });
         }
     });
@@ -48,18 +57,18 @@ function processResult(result) {
 
 // Flashing success message
 function successMessage(text) {
-    $().toastmessage('showToast', {
+    $().toastmessage(MESSAGE_SHOW, {
         text: text,
-        type: 'success',
-        position: 'bottom-right'
+        type: MESSAGE_SUCCESS,
+        position: MESSAGE_POSITION
     });
 }
 
 // Flashing error message
 function errorMessage(text) {
-    $().toastmessage('showToast', {
+    $().toastmessage(MESSAGE_SHOW, {
         text: text,
-        type: 'error',
-        position: 'bottom-right'
+        type: MESSAGE_ERROR,
+        position: MESSAGE_POSITION
     });
 }
