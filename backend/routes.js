@@ -1,5 +1,4 @@
 var express = require('express');
-var request = require('request');
 var helper = require('./lib/helper');
 var goserver = require('./lib/goserver')
 var config = require('./config');
@@ -18,12 +17,27 @@ function apply(app) {
 	// List (history) of already solved sudoku
 	app.get('/recent', function(req, res) {
 		new Record().getLastRecords(config.HISTORY_COUNT, function(records) {
+			var filteredRecords = [];
+			// Filtering records
+			records.forEach(function(record) {
+				var date = record.date;
+				var now = Date.now();
+				var dateDiff = now - new Date(date);
+				var r = {
+					order: record.order,
+					date: helper.getDate(dateDiff) + ' ago',
+					ip: record.ip,
+					time: helper.getDate(record.time)
+				};
+				filteredRecords.push(r);
+			});
 			res.render('recent', {
-				records: records
+				records: filteredRecords
 			});
 		});
 	});
 
+	// Solvin sudoku
 	app.post('/post-sudoku', function(req, res) {
 		// Getting matrix from request
 		var matrix = req.body.matrix;
