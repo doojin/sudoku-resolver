@@ -1,4 +1,5 @@
 var handlebars = require('express-handlebars');
+var bodyParser = require('body-parser');
 
 
 function apply(app) {
@@ -15,6 +16,11 @@ function apply(app) {
 		}
 	}));
 	app.set('view engine', 'handlebars');
+
+	// Body parser
+	app.use(bodyParser.urlencoded({
+		extended: true
+	}));
 }
 
 exports.apply = apply;

@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+	"fmt"
 	"net/http"
 
 	"./helper"
@@ -33,8 +34,9 @@ func PostSudokuHandler(w http.ResponseWriter, r *http.Request) {
 	// Resolving sudoku
 	sudoku := new(gosudoku.Sudoku)
 	sudoku.Numbers = intMatrix
-	//resolved := sudoku.Resolve()
+	solved := sudoku.Resolve()
 
 	// Creating response for Node.js server
-	//response := helper.BuildResponse(resolved, sudoku)
+	response := helper.BuildResponse(solved, sudoku.Numbers)
+	fmt.Fprint(w, response)
 }

@@ -17,8 +17,10 @@
   },
   "homepage": "https://github.com/doojin/sudoku-resolver",
   "dependencies": {
+    "body-parser": "^1.9.2",
     "express": "^4.10.1",
-    "express-handlebars": "^1.1.0"
+    "express-handlebars": "^1.1.0",
+    "request": "^2.47.0"
   },
   "devDependencies": {
     "grunt": "^0.4.5",
