@@ -20,7 +20,7 @@ $(document).ready(function() {
         var matrix = sudoku.getMatrix();
         var matrixJson = JSON.stringify(matrix);
         getSudokuResult(matrixJson, function(result) {
-            processResult(result);
+            processResult(sudoku, result);
             $(_self).removeClass('disabled');
         });
     });
@@ -47,8 +47,9 @@ function getSudokuResult(matrix, callback) {
 }
 
 // Processing success / error
-function processResult(result) {
+function processResult(sudoku, result) {
     if (result.solved) {
+        sudoku.setMatrix(result.matrix);
         successMessage(result.message);
     } else {
         errorMessage(result.error);

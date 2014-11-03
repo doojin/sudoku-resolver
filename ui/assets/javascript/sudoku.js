@@ -127,6 +127,20 @@ Sudoku.prototype.getMatrix = function() {
    return result;
 };
 
+// Gets new matrix as a argument and fills all empty sudoku fields
+// with new values
+Sudoku.prototype.setMatrix = function(matrix) {
+    for (var i=0; i<9; i++) {
+        for (var j=0; j<9; j++) {
+            var cell = this.getCellByIndex(i, j);
+            // Go on if cell is set already
+            if ($(cell).val()) continue;
+            $(cell).val(matrix[i][j]);
+        }
+    }
+
+};
+
 // Gets array of values for square by row and column indexes
 Sudoku.prototype.getSquare = function(rowIndex, colIndex) {
     var result = [[], [], []];
