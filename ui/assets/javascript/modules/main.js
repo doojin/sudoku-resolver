@@ -17,6 +17,7 @@ $(document).ready(function() {
     });
 });
 
+// Getting result from server
 function getSudokuResult(matrix, callback) {
     $.ajax({
         url: '/post-sudoku',
@@ -30,19 +31,35 @@ function getSudokuResult(matrix, callback) {
         error: function(data) {
             callback({
                 solved: false,
-                errors: [
-                    'Server error'
-                ]
+                error: 'Server can\'t respond right now'
             });
         }
     });
 }
 
+// Processing success / error
 function processResult(result) {
     if (result.solved) {
-        // Fill sudoku cells with correct values and disable it
-        // Display success message
+        successMessage(result.message);
     } else {
-        // Display error message
+        errorMessage(result.error);
     }
+}
+
+// Flashing success message
+function successMessage(text) {
+    $().toastmessage('showToast', {
+        text: text,
+        type: 'success',
+        position: 'bottom-right'
+    });
+}
+
+// Flashing error message
+function errorMessage(text) {
+    $().toastmessage('showToast', {
+        text: text,
+        type: 'error',
+        position: 'bottom-right'
+    });
 }
