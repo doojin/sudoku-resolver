@@ -1,5 +1,6 @@
 var express = require('express');
 var request = require('request');
+var goserver = require('./goserver')
 var config = require('./config');
 
 function apply(app) {
@@ -30,24 +31,10 @@ function apply(app) {
 				}
 			},
 			// Getting response from Go server
-		    function (error, response, body) {
+		    function (error, response, json) {
 		        if (!error && response.statusCode == 200) {
-		            responseObject = {
-						solved: true,
-						message: 'Your sudoku was solved',
-						matrix: [
-							['1', '1', '1', '1', '1', '1', '1', '1', '1'],
-							['1', '1', '1', '1', '1', '1', '1', '1', '1'],
-							['1', '1', '1', '1', '1', '1', '1', '1', '1'],
-							['1', '1', '1', '1', '1', '1', '1', '1', '1'],
-							['1', '1', '1', '1', '1', '1', '1', '1', '1'],
-							['1', '1', '1', '1', '1', '1', '1', '1', '1'],
-							['1', '1', '1', '1', '1', '1', '1', '1', '1'],
-							['1', '1', '1', '1', '1', '1', '1', '1', '1'],
-							['1', '1', '1', '1', '1', '1', '1', '1', '1']
-						]
-					};
-		        }
+					responseObject = goserver.extractResponse(json);
+				}
 				else {
 					responseObject = {
 						solved: false,
