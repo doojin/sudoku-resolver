@@ -10,121 +10,15 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<td><i class="calendar icon"></i>22 minute(s) ago</td>
-							<td>83.178.216.... (Latvia)</td>
-							<td><i class="time icon"></i>13 second(s)</td>
-							<td><a class="ui tiny black button" href="#">Open</a></td>
-						</tr>
-						<tr>
-							<td><i class="calendar icon"></i>3 hour(s) ago</td>
-							<td>83.178.216.... (Latvia)</td>
-							<td><i class="time icon"></i>2 second(s)</td>
-							<td><a class="ui tiny black button" href="#">Open</a></td>
-						</tr>
-						<tr>
-							<td><i class="calendar icon"></i>1 day(s) ago</td>
-							<td>83.178.216.... (Latvia)</td>
-							<td><i class="time icon"></i>5 second(s)</td>
-							<td><a class="ui tiny black button" href="#">Open</a></td>
-						</tr>
-						<tr>
-							<td><i class="calendar icon"></i>22 minute(s) ago</td>
-							<td>83.178.216.... (Latvia)</td>
-							<td><i class="time icon"></i>13 second(s)</td>
-							<td><a class="ui tiny black button" href="#">Open</a></td>
-						</tr>
-						<tr>
-							<td><i class="calendar icon"></i>3 hour(s) ago</td>
-							<td>83.178.216.... (Latvia)</td>
-							<td><i class="time icon"></i>2 second(s)</td>
-							<td><a class="ui tiny black button" href="#">Open</a></td>
-						</tr>
-						<tr>
-							<td><i class="calendar icon"></i>1 day(s) ago</td>
-							<td>83.178.216.... (Latvia)</td>
-							<td><i class="time icon"></i>5 second(s)</td>
-							<td><a class="ui tiny black button" href="#">Open</a></td>
-						</tr>
-						<tr>
-							<td><i class="calendar icon"></i>22 minute(s) ago</td>
-							<td>83.178.216.... (Latvia)</td>
-							<td><i class="time icon"></i>13 second(s)</td>
-							<td><a class="ui tiny black button" href="#">Open</a></td>
-						</tr>
-						<tr>
-							<td><i class="calendar icon"></i>3 hour(s) ago</td>
-							<td>83.178.216.... (Latvia)</td>
-							<td><i class="time icon"></i>2 second(s)</td>
-							<td><a class="ui tiny black button" href="#">Open</a></td>
-						</tr>
-						<tr>
-							<td><i class="calendar icon"></i>1 day(s) ago</td>
-							<td>83.178.216.... (Latvia)</td>
-							<td><i class="time icon"></i>5 second(s)</td>
-							<td><a class="ui tiny black button" href="#">Open</a></td>
-						</tr>
-						<tr>
-							<td><i class="calendar icon"></i>22 minute(s) ago</td>
-							<td>83.178.216.... (Latvia)</td>
-							<td><i class="time icon"></i>13 second(s)</td>
-							<td><a class="ui tiny black button" href="#">Open</a></td>
-						</tr>
-						<tr>
-							<td><i class="calendar icon"></i>3 hour(s) ago</td>
-							<td>83.178.216.... (Latvia)</td>
-							<td><i class="time icon"></i>2 second(s)</td>
-							<td><a class="ui tiny black button" href="#">Open</a></td>
-						</tr>
-						<tr>
-							<td><i class="calendar icon"></i>1 day(s) ago</td>
-							<td>83.178.216.... (Latvia)</td>
-							<td><i class="time icon"></i>5 second(s)</td>
-							<td><a class="ui tiny black button" href="#">Open</a></td>
-						</tr>
-						<tr>
-							<td><i class="calendar icon"></i>22 minute(s) ago</td>
-							<td>83.178.216.... (Latvia)</td>
-							<td><i class="time icon"></i>13 second(s)</td>
-							<td><a class="ui tiny black button" href="#">Open</a></td>
-						</tr>
-						<tr>
-							<td><i class="calendar icon"></i>3 hour(s) ago</td>
-							<td>83.178.216.... (Latvia)</td>
-							<td><i class="time icon"></i>2 second(s)</td>
-							<td><a class="ui tiny black button" href="#">Open</a></td>
-						</tr>
-						<tr>
-							<td><i class="calendar icon"></i>1 day(s) ago</td>
-							<td>83.178.216.... (Latvia)</td>
-							<td><i class="time icon"></i>5 second(s)</td>
-							<td><a class="ui tiny black button" href="#">Open</a></td>
-						</tr>
-						<tr>
-							<td><i class="calendar icon"></i>22 minute(s) ago</td>
-							<td>83.178.216.... (Latvia)</td>
-							<td><i class="time icon"></i>13 second(s)</td>
-							<td><a class="ui tiny black button" href="#">Open</a></td>
-						</tr>
-						<tr>
-							<td><i class="calendar icon"></i>3 hour(s) ago</td>
-							<td>83.178.216.... (Latvia)</td>
-							<td><i class="time icon"></i>2 second(s)</td>
-							<td><a class="ui tiny black button" href="#">Open</a></td>
-						</tr>
-						<tr>
-							<td><i class="calendar icon"></i>1 day(s) ago</td>
-							<td>83.178.216.... (Latvia)</td>
-							<td><i class="time icon"></i>5 second(s)</td>
-							<td><a class="ui tiny black button" href="#">Open</a></td>
-						</tr>
+						{{#each records}}
+							<tr>
+								<td><i class="calendar icon"></i>{{date}}</td>
+								<td>{{ip}}</td>
+								<td><i class="time icon"></i>{{time}}</td>
+								<td><a class="ui tiny black button" href="/game/{{order}}">Open</a></td>
+							</tr>
+						{{/each}}
 					</tbody>
 				</table>
 			</div>
 		</div>
-		
-
-{{#section 'scripts'}}
-	<script type="text/javascript" src="/javascript/recent.js"></script>
-	<script type="text/javascript" src="/javascript/modules/recent.js"></script>
-{{/section}}

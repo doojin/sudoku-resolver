@@ -13,3 +13,24 @@ exports.getMarked = function(matrix) {
     }
     return result;
 };
+
+exports.getDate = function(timeDiff) {
+    if (timeDiff < 1000) {
+        return timeDiff + ' ms';
+    }
+    else if (timeDiff < 1000 * 60) {
+        return Math.floor(timeDiff / 1000) + ' secs';
+    }
+    else if (timeDiff < 1000 * 60 * 60) {
+        return Math.floor(timeDiff / 1000 / 60) + ' mins';
+    }
+    else if (timeDiff < 1000 * 60 * 60 * 24) {
+        return Math.floor(timeDiff / 1000 / 60 / 60) + ' hrs';
+    }
+    else if (timeDiff < 1000 * 60 * 60 * 24 * 28) {
+        return Math.floor(timeDiff / 1000 / 60 / 60 / 24) + ' days';
+    }
+    else {
+        return Math.floor(timeDiff / 1000 / 60 / 60 / 24 / 28) + ' monthes';
+    }
+};
