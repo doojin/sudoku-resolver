@@ -57,6 +57,23 @@ function apply(app) {
 			});
 		});
 	});
+
+	// Displaying already solved sudoku
+	app.get('/game/:order([0-9]+)', function(req, res) {
+		var order = req.params.order;
+		new Record().getRecordByOrder(order, function(record) {
+			// Game with this order doesn't exist
+			if (!record) {
+				res.redirect(303, '/recent');
+				return;
+			}
+			// Game exists
+			res.render('game', {
+				matrix: JSON.stringify(record.matrix),
+				marked: JSON.stringify(record.marked)
+			});
+		});
+	});
 }
 
 exports.apply = apply;

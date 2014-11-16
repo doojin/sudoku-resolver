@@ -38,3 +38,8 @@ h1, h2, h3 {color: rgba(0, 0, 0, 0.75);}
 
 #history td {padding: 20px;}
 #history th {padding: 10px 20px;}
+
+.game-container {
+	width: 70%;
+	margin: 0 auto;
+}

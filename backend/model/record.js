@@ -34,4 +34,14 @@ record.prototype.getLastRecords = function(count, callback) {
     });
 };
 
+// Get record by order
+record.prototype.getRecordByOrder = function(order, callback) {
+    record.findOne({order: order}, function(err, record) {
+        if (err) {
+            console.log(err);
+        }
+        callback(record);
+    });
+};
+
 module.exports = record;
