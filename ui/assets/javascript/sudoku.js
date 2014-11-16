@@ -203,6 +203,16 @@ Sudoku.prototype.isNumberUnique = function(cell) {
     return this.isLineUnique(row) && this.isLineUnique(col) && this.isLineUnique(squareLine);
 };
 
+Sudoku.prototype.mark = function(mareked) {
+    var _self = this;
+    marked.forEach(function(indexes) {
+        var rowIndex = indexes[0];
+        var colIndex = indexes[1];
+        var cell = _self.getCellByIndex(rowIndex, colIndex);
+        $(cell).addClass('active');
+    });
+};
+
 Sudoku.prototype.registerEventListeners = function() {
     var _self = this;
 
