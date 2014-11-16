@@ -74,6 +74,10 @@ function apply(app) {
 			});
 		});
 	});
+	
+	app.get('/rules', function(req, res) {
+		res.render('rules');	
+	});
 }
 
 exports.apply = apply;
